@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tiny Chat</title>
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <!-- ===== Auth screen ===== -->
+  <main id="auth-screen" class="auth-screen">
+    <div class="auth-card">
+      <h1 class="wordmark">Tiny Chat</h1>
+      <p class="tagline">One room. Ten people, max. No scrolling through channels.</p>
+
+      <div class="tabs">
+        <button class="tab-btn is-active" data-tab="login">Log in</button>
+        <button class="tab-btn" data-tab="signup">Sign up</button>
+      </div>
+
+      <form id="login-form" class="auth-form">
+        <label for="login-username">Username</label>
+        <input id="login-username" name="username" autocomplete="username" required />
+        <label for="login-password">Password</label>
+        <input id="login-password" name="password" type="password" autocomplete="current-password" required />
+        <button type="submit">Log in</button>
+      </form>
+
+      <form id="signup-form" class="auth-form" hidden>
+        <label for="signup-username">Username</label>
+        <input id="signup-username" name="username" autocomplete="username" required maxlength="20" />
+        <label for="signup-password">Password</label>
+        <input id="signup-password" name="password" type="password" autocomplete="new-password" required minlength="6" />
+        <button type="submit">Create account</button>
+      </form>
+
+      <p id="auth-error" class="auth-error" hidden></p>
+      <p id="auth-note" class="auth-note"></p>
+    </div>
+  </main>
+
+  <!-- ===== Chat screen ===== -->
+  <main id="chat-screen" class="chat-screen" hidden>
+    <header class="chat-header">
+      <div>
+        <h1 class="room-name">Tiny Chat</h1>
+        <p id="member-line" class="member-line">— members</p>
+      </div>
+      <button id="logout-btn" class="ghost-btn">Log out</button>
+    </header>
+
+    <div id="messages" class="messages" aria-live="polite"></div>
+
+    <form id="composer" class="composer">
+      <input id="composer-input" autocomplete="off" placeholder="Say something…" maxlength="2000" />
+      <button type="submit">Send</button>
+    </form>
+  </main>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
